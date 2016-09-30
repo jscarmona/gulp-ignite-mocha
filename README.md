@@ -27,7 +27,7 @@ watch('test:watch', './src/**/*.js', ['test']);
 Run mocha on test files.
 
 ```bash
-$ gulp mocha
+$ gulp test
 ```
 
 ##### options
