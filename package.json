@@ -30,8 +30,7 @@
   "dependencies": {
     "gulp": "3.9.0",
     "gulp-ignite": "1.4.0",
-    "gulp-mocha": "3.0.1",
-    "yargs": "3.32.0"
+    "gulp-mocha": "3.0.1"
   },
   "devDependencies": {
     "babel-cli": "6.6.4",

@@ -1,6 +1,6 @@
 import gulp from 'gulp';
 import mocha from 'gulp-mocha';
-import yargs from 'yargs';
+import { IGNITE_UTILS } from 'gulp-ignite/utils';
 
 export default {
   /**
@@ -20,8 +20,7 @@ export default {
    * @type {Object}
    */
   config: {
-    src: ['./client/app/*.spec.js'],
-    watchFiles: ['./client/app/*.js'],
+    src: ['./client/app/**/*.spec.js'],
     options: {},
   },
 
@@ -29,9 +28,7 @@ export default {
    * Task help options
    * @type {Object}
    */
-  help: {
-    watch: 'Watch test files for changes. (Default: false)',
-  },
+  help: {},
 
   /**
    * Task function
@@ -40,18 +37,9 @@ export default {
    * @param {Function} error
    */
   fn(config, end, error) {
-    const runTests = () => (
-      gulp.src(config.src, { read: false })
-        .pipe(mocha(config.options))
-        .on('error', () => {
-          error(null, false);
-        })
-    );
-
-    if (yargs.argv.w || yargs.argv.watch) {
-      gulp.watch(config.watchFiles, runTests);
-    }
-
-    return runTests();
+    return gulp.src(config.src, { read: false })
+      .pipe(mocha(config.options))
+      .on('error', () => error(null, false))
+      .on('end', () => IGNITE_UTILS.notify('Mocha Complete'));
   },
 };

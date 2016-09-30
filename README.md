@@ -15,16 +15,11 @@ $ npm install --save-dev gulp-ignite gulp-ignite-mocha
 ## example
 
 ```js
-'use strict';
-
-import ignite from 'gulp-ignite';
+import { task, watch } from 'gulp-ignite';
 import mocha from 'gulp-ignite-mocha';
 
-const tasks = [mocha];
-const options = {};
-
-ignite.start(tasks, options);
-
+task('test', mocha, { src: './src/**/*.spec.js' });
+watch('test:watch', './src/**/*.js', ['test']);
 ```
 
 ## usage
@@ -32,15 +27,11 @@ ignite.start(tasks, options);
 Run mocha on test files.
 
 ```bash
-$ gulp mocha --watch
+$ gulp mocha
 ```
-
-##### arguments
-- `watch` - Watch src files for changes (**Default:** false).
 
 ##### options
 - `src` - Source files to test. (**Default:** `['./client/app/*.spec.js']`)
-- `watchFiles` - Files to watch for changes on. (**Default:** `['./client/app/*.js']`)
 - `options` - Options to pass through to mocha cli. (**Default:** `{}`)
 - `deps` - Any gulp tasks that task would be dependent of. (**Default:** `[]`)
 

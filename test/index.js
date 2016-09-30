@@ -27,20 +27,9 @@ describe('Task', () => {
 
     it('should equal the default config', () => {
       expect(task.config).to.eql({
-        src: ['./client/app/*.spec.js'],
-        watchFiles: ['./client/app/*.js'],
+        src: ['./client/app/**/*.spec.js'],
         options: {},
       });
-    });
-  });
-
-  describe('#help', () => {
-    it('should be an object', () => {
-      expect(task.help).to.be.a('object');
-    });
-
-    it('should have property `watch`', () => {
-      expect(task.help.watch).to.not.be.null;
     });
   });
 
