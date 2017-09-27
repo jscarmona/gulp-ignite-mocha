@@ -7,7 +7,8 @@
     "test": "mocha --compilers js:babel-core/register",
     "watch": "mocha --compilers js:babel-core/register -w",
     "build": "babel src -d ./",
-    "prepublish": "npm test && npm run build"
+    "prepublish": "npm run snyk-protect; npm test && npm run build",
+    "snyk-protect": "snyk protect"
   },
   "repository": {
     "type": "git",
@@ -30,7 +31,8 @@
   "dependencies": {
     "gulp": "3.9.0",
     "gulp-ignite": "1.4.0",
-    "gulp-mocha": "3.0.1"
+    "gulp-mocha": "3.0.1",
+    "snyk": "^1.41.1"
   },
   "devDependencies": {
     "babel-cli": "6.6.4",
@@ -49,5 +51,6 @@
       "post-merge": "npm install",
       "post-rewrite": "npm install"
     }
-  }
+  },
+  "snyk": true
 }
